@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/demiBouteille"
+        android:title="37,5cl - Demi-Bouteille"
+        android:checkable="true"></item>
+    <item android:id="@+id/medium"
+        android:title="50cl - Médium"
+        android:checkable="true"></item>
+    <item android:id="@+id/bouteille"
+        android:title="75cl - Bouteille"
+        android:checkable="true"></item>
+    <item android:id="@+id/magnum"
+        android:title="1,5L - Magnum"
+        android:checkable="true"></item>
+    <item android:id="@+id/jeroboam"
+        android:title="3L - Jéroboam"
+        android:checkable="true"></item>
+    <item android:id="@+id/rehoboam"
+        android:title="4,5cl - Réhoboam"
+        android:checkable="true"></item>
+    <item android:id="@+id/mathusalem"
+        android:title="6L - Mathusalem"
+        android:checkable="true"></item>
+    <item android:id="@+id/salmanazar"
+        android:title="9L - Salmanazar"
+        android:checkable="true"></item>
+    <item android:id="@+id/balthazar"
+        android:title="12L - Balthazar"
+        android:checkable="true"></item>
+</menu>

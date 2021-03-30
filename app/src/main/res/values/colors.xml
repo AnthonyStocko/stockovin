@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#49BEFF</color>
+    <color name="colorPrimaryDark">#65DCE5</color>
+    <color name="colorAccent">#0D5D98</color>
+    <color name="background">#F2E8E6</color>
+    <color name="black">#000000</color>
+    <color name="translucide">#00000000</color>
+    <color name="address">#2F7092</color>
+    <color name="followers">#0D5D98</color>
+    <color name="headings">#3797CF</color>
+    <color name="solidCircle">#AAFFFFFF</color>
+    <color name="circleBorder">#50FFFFFF</color>
+    <color name="gradEnd">#f05053</color>
+    <color name="gradStart">#e1eec3</color>
+    <color name="followersBg">#65DCE5</color>
+    <color name="followingBg">#49BEFF</color>
+    <color name="grey">#E5E5E5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="color_white">#fefefe</color>
+    <color name="grad2End">#FFFFFF</color>
+    <color name="grad2Start">#ECE9E6</color>
+    <color name="gradBottleEnd">#2193b0</color>
+    <color name="gradBottleStart">#6dd5ed</color>
+    <color name="borderRed">#f06463</color>
+    <color name="bottleList">#49BEFF</color>
+    <color name="cirBotWhite">#e1eec3</color>
+    <color name="cirBotChamp">#CAC531</color>
+    <color name="cirBotRose">#FFB59B</color>
+    <color name="greenContact">#ff669900</color>
+
+
+</resources>

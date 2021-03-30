@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:layout_centerVertical="true">
+
+        <ProgressBar
+            android:id="@+id/progressBarBottleList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_centerVertical="true">
+        </ProgressBar>
+
+        <!--<ProgressBar
+            android:id="@+id/pBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="00dp"
+            android:layout_marginTop="00dp"
+            android:minHeight="50dp"
+            android:minWidth="200dp"
+            android:max="100"
+            android:min="0"
+            android:indeterminate="false"
+            android:progress="0" />
+        <TextView
+            android:id="@+id/tView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pBar"
+            android:layout_below="@+id/pBar" />-->
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentLeft="true"
+            android:elevation="0dp"
+            android:theme="@style/AppTheme1"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            <include layout="@layout/toolbar_friend" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:padding="0dp">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/border_green">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal"
+                    android:padding="0dp">
+
+                    <SearchView
+                        android:id="@+id/search"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="4dp"
+                        android:inputType="text"
+                        app:showAsAction="ifRoom|collapseActionView"
+                        android:iconifiedByDefault="false"/>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--<TextView
+                android:id="@+id/messageNotBottle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="7dp"
+                android:gravity="center_horizontal"
+                android:text="Aucune bouteille n'a été trouvée"
+                android:textSize="15sp"
+                android:textStyle="bold"/>-->
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height= "match_parent"
+                android:fadeScrollbars="false"
+                android:id="@+id/coordinatorLayout"
+                tools:context=".CategorieActivity">
+
+                <LinearLayout
+                    android:id="@+id/LinearUser"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height= "match_parent"
+                    android:padding="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerUserView"
+                        android:background="@color/translucide"
+                        android:layout_width="match_parent"
+                        android:layoutAnimation="@anim/layout_animation"
+                        android:layout_height= "match_parent"/>
+                </LinearLayout>
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+

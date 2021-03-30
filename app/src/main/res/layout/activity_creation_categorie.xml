@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grad_cat"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_alignParentLeft="true"
+                    android:elevation="0dp"
+                    android:theme="@style/AppTheme1"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                    <include layout="@layout/toolbar_region" />
+                </androidx.appcompat.widget.Toolbar>
+
+                <RelativeLayout
+                    android:id="@+id/rellay1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <RelativeLayout
+                        android:id="@+id/rellay2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingBottom="10dp">
+
+                        <ImageView
+                            android:id="@+id/imgCreaBotAnim"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="2dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/circ_img" />
+
+                        <ImageView
+                            android:id="@+id/imgCreaBotAnim2"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="2dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/circ_img" />
+
+                        <RelativeLayout
+                            android:id="@+id/imgUser"
+                            android:layout_width="155dp"
+                            android:layout_height="155dp"
+                            android:layout_centerHorizontal="true"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="0dp"
+                            android:background="@drawable/circle_border">
+
+                            <ImageView
+                                android:id="@+id/imgMiFoto2"
+                                android:layout_width="140dp"
+                                android:layout_height="140dp"
+                                android:layout_margin="9dp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/circle"
+                                android:padding="0dp"
+                                android:scaleType="centerInside" />
+
+                            <ImageView
+                                android:id="@+id/imgMiFoto"
+                                android:layout_width="130dp"
+                                android:layout_height="130dp"
+                                android:layout_margin="13dp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/circle"
+                                android:padding="5dp"
+                                android:scaleType="centerInside" />
+
+                            <ImageView
+                                android:id="@+id/imgMiFoto1"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:layout_marginTop="28dp"
+                                android:layout_marginLeft="32dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/icon_region"
+                                android:scaleType="centerInside" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/editTextCategoriename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/Categorie"
+                android:inputType="text" />
+
+            <LinearLayout
+                android:id="@+id/linlay3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp">
+
+                <LinearLayout
+                    android:id="@+id/linlay4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp">
+
+                    <ImageView
+                        android:id="@+id/buttonInsertCat"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_region" />
+
+                    <TextView
+                        android:id="@+id/buttonLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center"
+                        android:text="@string/Création" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBarCatInsert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+</LinearLayout>

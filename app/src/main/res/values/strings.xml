@@ -1,0 +1,145 @@
+<resources>
+    <string name="app_name">Stock"'"o Vin</string>
+    <string name="delete_item">Supprimer</string>
+    <string name="menu_options">Options</string>
+    <string name="TitreCategorieListe">Région</string>
+    <string name="modify_item">Modifier</string>
+    <string name="creation">Création</string>
+    <string name="Modify">Modification</string>
+
+    //MainActivity
+    <string name="EnterName">Entrer votre identifiant</string>
+    <string name="EnterEmail">Entrer votre email</string>
+    <string name="EnterEmailValide">Entrer un email valide</string>
+    <string name="EnterPassword">Entrer un mot de passe</string>
+    <string name="lengthPassword">Le mot de passe doit contenir au moins 8 caractères</string>
+    <string name="ErrorCreateAccount">Une erreur est survenue, Merci de ressayer</string>
+    <string name="CreateAccountOK">Votre compte a été créé</string>
+    <string name="difPassword">Le confirmation est différente du mot de passe</string>
+
+    //ProfileActivity
+    <string name="ButtonCave">La cave</string>
+    <string name="ButtonFriend">Les copains</string>
+    <string name="ButtonLogout">Logout</string>
+    <string name="Bottle">Bouteilles</string>
+    <string name="Categorie">Régions</string>
+    <string name="PourcentInfo">Informations</string>
+    <string name="ButtonSuggest">Suggestions</string>
+    <string name="categorieTourGuide">Les Régions</string>
+    <string name="createCategorieTourGuide">Créez votre première région</string>
+    <string name="createBeerTourGuide">Vous pouvez enregistrer vos bouteilles ici</string>
+    <string name="bingo">Bingo!</string>
+    <string name="tchin">Tchin!</string>
+    <string name="degustBeerTourGuide">Retrouvez vos bouteilles plus facilement dans votre cave en prenant en photo l"'"étiquette</string>
+    <string name="friendTourGuide">Les copains!</string>
+    <string name="friendFoundTourGuide">Votre Profile est public, Retrouvez vos copains pour leur suggérer des bouteilles</string>
+    <string name="suggestTourGuide">Les Suggestions!</string>
+    <string name="suggestFoundTourGuide">Vos copains peuvent vous suggérer des bouteilles</string>
+
+
+    //ProfileActivity2
+    <string name="twitterUsername">\@joeytribbiani</string>
+    <string name="Firstname">Prénom</string>
+    <string name="Name">Nom</string>
+    <string name="EnterNameUser">"Entrer votre nom"</string>
+    <string name="EnterFirstNameUser">"Entrer votre prénom"</string>
+    <string name="ErrorModifUser">Une erreur est survenue, Merci de ressayer</string>
+    <string name="EnterCaveName">"Donner un nom à votre cave"</string>
+    <string name="Degustation">Degustation</string>
+    <string name="titrePublic">Profil public</string>
+
+    //LoginActivity
+    <string name="EnterNameLogin">Entrer votre identifiant</string>
+    <string name="EnterEmailLogin">Entrer votre email</string>
+    <string name="LoginAccountOK">Bienvenue dans votre cave!</string>
+    <string name="LoginAccountNOK">Identifiant ou mot de passe invalide</string>
+    <string name="Identifiant">Identifiant</string>
+    <string name="Password">Mot de passe</string>
+    <string name="Connexion">Connexion</string>
+    <string name="Email">Email</string>
+    <string name="Male">Homme</string>
+    <string name="Female">Femme</string>
+    <string name="Register">Créer un compte</string>
+    <string name="AlreadyRegistered">J"'"ai déjà un compte</string>
+    <string name="ForgotPassword">Mot de passe oublié</string>
+    <string name="Sendmail">Un email vous sera envoyé</string>
+    <string name="Reset">Reset</string>
+    <string name="confirmPassword">Confirmation du mot de passe</string>
+
+    //toolbar
+    <string name="Dashboard">Dashboard</string>
+
+    //CategorieActivity
+    <string name="ListeCategorie">La liste des régions</string>
+    <string name="ErrorListeCategorie">Une erreur est survenue, Merci de ressayer</string>
+    <string name="DeleteCategorieOK">La région %1$s a été supprimée</string>
+
+    //CategorieCreationActivity
+    <string name="EnterCategorieName">"Entrer un nom de région"</string>
+    <string name="CategorieCreee">La région %1$s est créée</string>
+    <string name="ErrorCreationCategorie">Une erreur est survenue, Merci de ressayer</string>
+    <string name="SelectCreationCategorie">Régions %1$s</string>
+    <string name="CategorieModifiee">La région %1$s est modifiée</string>
+    <string name="Création">Création</string>
+
+    //BottleActivity
+    <string name="ListeBottle">La liste des bouteilles</string>
+    <string name="ErrorListeBottle">Une erreur est survenue, Merci de ressayer</string>
+    <string name="DeleteBottleOK">La Bouteille %1$s a été supprimée id %1$s</string>
+
+    //BottleCreationActivity
+    <string name="EnterBottleName">"Entrer le nom de la bouteille"</string>
+    <string name="EnterDomainName">"Entrer le nom du domaine"</string>
+    <string name="ErrorCreationBottle">Une erreur est survenue, Merci de ressayer</string>
+    <string name="SelectCreationBottle">Bouteille %1$s</string>
+    <string name="BottleModifiee">La bouteille %1$s est modifiée</string>
+    <string name="BottleCreate">La bouteille %1$s est créée</string>
+    <string name="AllreadyExiste">La bouteille %1$s existe déjà</string>
+    <string name="BottleSend">La bouteille %1$s est envoyée</string>
+    <string name="BottleName">Nom de la bouteille</string>
+    <string name="DomainName">Nom du domaine</string>
+    <string name="CategorieName">Nom de la région</string>
+    <string name="Commentaire">Commentaire</string>
+    <string name="BottleQte">Quantité</string>
+    <string name="BottleType">Type</string>
+    <string name="BottleContainer">Contenant</string>
+    <string name="BottleNote">Note</string>
+    <string name="BottleYear">Année</string>
+    <string name="titreCaveName">Nom de la cave</string>
+    <string name="titreNbBottleMax">Capacité maximum de bouteille</string>
+    <string name="EnterNbBottle">Enter le nombre bouteilles</string>
+    <string name="BottleGarde">Garde</string>
+    <string name="BottlePrice">Prix</string>
+    <string name="BottlePurchaseDate">Date d"'"achat</string>
+    <string name="BottleProvider">Lieu d"'"achat</string>
+    <string name="SelectFriend">Sélectionner les copains :</string>
+    <string name="Send">Envoyer</string>
+    <string name="Cancel">Annuler</string>
+    <string name="Supp">Supprimer</string>
+    <string name="ButtonBotSuggest">Suggérer</string>
+
+
+    //BottleList
+    <string name="tittleDegust">Dégustation</string>
+
+    //BottleSuggestList
+    <string name="SuggestBy">Suggérée par:</string>
+
+    //UserList
+    <string name="tittleFriend">Les copains</string>
+    <string name="Ack">Accepter</string>
+    <string name="add">Ajouter</string>
+    <string name="refuse">Refuser</string>
+    <string name="Ret">Retirer</string>
+
+    //Mail
+    <string name="objectMail">"Stockovin : Changement de mot de passe"</string>
+    <string name="bodyMail">"Bonjour %1$s,
+
+Votre nouveau mot de passe est %2$s.
+
+Cordialement,
+L'equipe de Stock'o vin"</string>
+
+
+</resources>

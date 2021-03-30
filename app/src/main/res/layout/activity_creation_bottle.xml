@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fadeScrollbars="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grad_bottle"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_alignParentLeft="true"
+                    android:elevation="0dp"
+                    android:theme="@style/AppTheme1"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                    <include layout="@layout/toolbar_profile_config" />
+                </androidx.appcompat.widget.Toolbar>
+
+                <RelativeLayout
+                    android:id="@+id/rellay1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <RelativeLayout
+                        android:id="@+id/rellay2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingBottom="10dp">
+
+                            <ImageView
+                                android:id="@+id/imgCreaBotAnim"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="2dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/circ_img" />
+
+                            <ImageView
+                                android:id="@+id/imgCreaBotAnim2"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="2dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/circ_img" />
+
+                            <RelativeLayout
+                                android:id="@+id/imgUser"
+                                android:layout_width="155dp"
+                                android:layout_height="155dp"
+                                android:layout_centerHorizontal="true"
+                                android:adjustViewBounds="true"
+                                android:layout_marginTop="0dp"
+                                android:background="@drawable/circle_border">
+
+                                <ImageView
+                                    android:id="@+id/imgMiFoto2"
+                                    android:layout_width="140dp"
+                                    android:layout_height="140dp"
+                                    android:layout_margin="9dp"
+                                    android:adjustViewBounds="true"
+                                    android:background="@drawable/circle"
+                                    android:padding="0dp"
+                                    android:scaleType="centerInside" />
+
+                                <ImageView
+                                    android:id="@+id/imgMiFoto"
+                                    android:layout_width="130dp"
+                                    android:layout_height="130dp"
+                                    android:layout_margin="13dp"
+                                    android:adjustViewBounds="true"
+                                    android:background="@drawable/circle"
+                                    android:padding="5dp"
+                                    android:scaleType="centerInside" />
+                            </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/idcardview10"
+                        android:layout_width="180dp"
+                        android:layout_height="210dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_marginLeft="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="0dp"
+                        app:cardUseCompatPadding="true"
+                        android:background="@color/translucide"
+                        app:cardElevation="5dp">
+
+                        <ImageView
+                            android:id="@+id/imgPhotoBot"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:layout_centerHorizontal="true"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <ImageView
+                        android:id="@+id/ButtonCamera"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="5dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_photo" />
+
+                    <ImageView
+                        android:id="@+id/ButtonFile"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginRight="5dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_file" />
+
+                    <ImageView
+                        android:id="@+id/ButtonTrash"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="110dp"
+                        android:layout_marginRight="5dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_poubelle" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/BottleName"
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <EditText
+                            android:id="@+id/editTextbottlename"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="@string/BottleName"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/DomainName"
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <EditText
+                            android:id="@+id/editTextbottledomain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="Domaine"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/CategorieName"
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <Spinner
+                            android:id="@+id/SpinnerCat"
+                            android:drawSelectorOnTop = "true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:hint="Contenant"
+                            android:inputType="text"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_gravity="left"
+                        android:orientation="vertical"
+                        android:spinnerMode="dropdown">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/BottleType"
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <Spinner
+                            android:drawSelectorOnTop = "true"
+                            android:id="@+id/SpinnerType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:hint="Type"
+                            android:inputType="text"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LayoutContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_gravity="left"
+                        android:orientation="vertical"
+                        android:popupBackground="@drawable/blue_outline"
+                        android:spinnerMode="dropdown">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/BottleContainer"
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <Spinner
+                            android:id="@+id/SpinnerContainer"
+                            android:drawSelectorOnTop = "true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:hint="Contenant"
+                            android:inputType="text"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LayoutYearQteNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/LayoutContainer"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/LayoutContainer"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/BottleYear"
+                                    android:textColor="@color/headings"
+                                    android:textSize="13sp" />
+
+                                <Spinner
+
+                                    android:id="@+id/SpinnerYear"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="sans-serif-light"
+                                    android:textColor="#000000"
+                                    android:hint="Quantité"
+                                    android:inputType="text"
+                                    android:textSize="18sp"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+                            <!--
+                            <DatePicker
+                                android:id="@+id/datePickerbottle"
+                                style="@android:style/Widget.DatePicker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:contextClickable="false"
+                                android:endYear="2032"
+                                android:startYear="1950"
+                                android:visibility="visible"
+                                tools:visibility="visible" />
+                                -->
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/LayoutContainer"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/BottleQte"
+                                    android:textColor="@color/headings"
+                                    android:textSize="13sp" />
+
+                                <Spinner
+                                    android:id="@+id/SpinnerQte"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="sans-serif-light"
+                                    android:textColor="#000000"
+                                    android:hint="Quantité"
+                                    android:inputType="text"
+                                    android:textSize="18sp"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/LayoutContainer"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/BottleNote"
+                                    android:textColor="@color/headings"
+                                    android:textSize="13sp" />
+
+                                <Spinner
+                                    android:id="@+id/SpinnerNote"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:fontFamily="sans-serif-light"
+                                    android:textColor="#000000"
+                                    android:hint="Note"
+                                    android:inputType="text"
+                                    android:textSize="18sp"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LayoutGardePrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/LayoutContainer"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/LayoutYearQteNote"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/BottleGarde"
+                                    android:textColor="@color/headings"
+                                    android:textSize="13sp" />
+
+                                <Spinner
+
+                                    android:id="@+id/SpinnerGarde"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="sans-serif-light"
+                                    android:textColor="#000000"
+                                    android:hint="Garde"
+                                    android:inputType="text"
+                                    android:textSize="18sp"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <!--
+                        <DatePicker
+                            android:id="@+id/datePickerbottle"
+                            style="@android:style/Widget.DatePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:contextClickable="false"
+                            android:endYear="2032"
+                            android:startYear="1950"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
+                            -->
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/LayoutYearQteNote"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/BottlePrice"
+                                    android:textColor="@color/headings"
+                                    android:textSize="13sp" />
+
+                                <EditText
+                                    android:id="@+id/editTextbottlePrice"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif-light"
+                                    android:hint="0"
+                                    android:inputType="numberDecimal"
+                                    android:textColor="#000000"
+                                    android:textSize="18sp" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LayoutPurchaseDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/LayoutGardePrice"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/LayoutGardePrice"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/BottlePurchaseDate"
+                                    android:textColor="@color/headings"
+                                    android:textSize="13sp" />
+
+                                <DatePicker
+                                    android:id="@+id/datePickerPurchaseDate"
+                                    style="@android:style/Widget.DatePicker"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center"
+                                    android:contextClickable="false"
+                                    android:endYear="2032"
+                                    android:startYear="1950"
+                                    android:visibility="visible"
+                                    tools:visibility="visible" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LayoutProvider"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/LayoutPurchaseDate"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/LayoutPurchaseDate"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/BottleProvider"
+                                    android:textColor="@color/headings"
+                                    android:textSize="13sp" />
+
+                                <EditText
+                                    android:id="@+id/editTextbottleProvider"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif-light"
+                                    android:hint="@string/BottleProvider"
+                                    android:textColor="#000000"
+                                    android:textSize="18sp" />
+
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Commentaire"
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <EditText
+                            android:id="@+id/editTextbottlecomment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linlay4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingRight="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:paddingLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:paddingBottom="20dp">
+
+                        <LinearLayout
+                            android:id="@+id/linlay310"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingRight="0dp"
+                            android:paddingLeft="0dp">
+
+                            <ImageView
+                                android:id="@+id/buttonBotSuggest"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:gravity="center"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/icon_suggest" />
+
+                            <TextView
+                                android:id="@+id/textBotSuggest"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginTop="2dp"
+                                android:gravity="center"
+                                android:text="@string/ButtonBotSuggest" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linlay3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingRight="0dp"
+                            android:paddingLeft="0dp">
+
+                            <ImageView
+                                android:id="@+id/buttonInserUpdatetBot"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:gravity="center"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/icon_bottle" />
+
+                            <TextView
+                                android:id="@+id/textInserUpdatetBot"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginTop="2dp"
+                                android:gravity="center"
+                                android:text="@string/Modify" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linlay31"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingRight="0dp"
+                            android:paddingLeft="0dp">
+
+                            <ImageView
+                                android:id="@+id/buttonDeletetBot"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:gravity="center"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/icon_poubelle" />
+
+                            <TextView
+                                android:id="@+id/textDeletetBot"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginTop="2dp"
+                                android:gravity="center"
+                                android:text="Supprimer" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBarBotInsert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

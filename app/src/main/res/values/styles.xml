@@ -1,0 +1,48 @@
+<resources>
+    <!-- Base application theme. -->
+<!--
+    <style name="AppTheme1" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+-->
+
+    <style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">#FF4081</item>  // you can change the color of the yearPiker dialog
+        <item name="android:textColorPrimary">#FF4081</item> // you can change the color of the yearPiker dialog
+    </style>
+
+    <style name="blueBackground">
+        <item name="android:background">@color/background</item>
+    </style>
+
+    <style name="translucide">
+        <item name="android:background">@color/translucide</item>
+    </style>
+
+        <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            <!-- Color of the title text in the Toolbar-->
+        <item name="android:textColorPrimary">@android:color/holo_blue_light</item>
+        <!-- actionMenuTextColor is the color of the text of action (menu) items-->
+        <item name="actionMenuTextColor">@android:color/holo_green_light</item>
+        <!-- Tints the input fields like checkboxes and text fields-->
+    </style>
+
+        <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+            <item name="android:textSize">10sp</item>
+            <item name="android:textStyle">italic</item>
+        </style>
+
+    </resources>

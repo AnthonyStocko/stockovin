@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:layout_centerVertical="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true"
+            android:padding="0dp">
+
+            <LinearLayout
+                android:id="@+id/recyclerViewLayCat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:layout_alignParentLeft="true"
+                android:padding="0dp">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_alignParentLeft="true"
+                    android:elevation="0dp"
+                    android:theme="@style/AppTheme1"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                    <include layout="@layout/toolbar" />
+                </androidx.appcompat.widget.Toolbar>
+
+                <RelativeLayout
+                    android:id="@+id/recyclerViewRelatCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:fadeScrollbars="false"
+                    tools:context=".CategorieActivity">
+
+                    <LinearLayout
+                        android:id="@+id/recyclerViewCat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical"
+                        android:padding="0dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:background="@color/translucide"
+                            android:layoutAnimation="@anim/layout_animation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="0dp"/>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:id="@+id/recyclerViewRelatFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:fadeScrollbars="false"
+                    tools:context=".CategorieActivity">
+
+
+                    <LinearLayout
+                        android:id="@+id/LayoutRecyclerViewFilter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical"
+                        android:padding="0dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewFilter"
+                            android:background="@color/translucide"
+                            android:layoutAnimation="@anim/layout_animation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="0dp"/>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/border">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        android:padding="0dp">
+
+                        <SearchView
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="37dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginBottom="4dp"
+                            android:inputType="text"
+                            app:showAsAction="ifRoom|collapseActionView"
+                            android:iconifiedByDefault="false"/>
+
+
+                    </LinearLayout>
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:fadeScrollbars="false"
+                android:layout_height= "match_parent"
+                android:id="@+id/coordinatorLayout"
+                tools:context=".CategorieActivity">
+
+                <LinearLayout
+                    android:id="@+id/Linearbottle"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height= "match_parent"
+                    android:padding="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerbotView"
+                        android:background="@color/translucide"
+                        android:layout_width="match_parent"
+                        android:layoutAnimation="@anim/layout_animation"
+                        android:layout_height= "match_parent"/>
+                </LinearLayout>
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        </LinearLayout>
+
+        <ProgressBar
+        android:id="@+id/progressBarMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/buttonCreationBot"
+            android:layout_gravity= "bottom|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgBotPlusBack"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity= "bottom|right"
+                android:layout_marginBottom="15dip"
+                android:padding="0dp"
+                android:layout_marginRight="15dip"
+                android:src="@drawable/circ_bot" />
+
+            <ImageView
+                android:id="@+id/buttonCreationBotPlus"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginRight="25dip"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="25dip"
+                android:src="@drawable/icon_cream_plus" />
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+
+</RelativeLayout>
+

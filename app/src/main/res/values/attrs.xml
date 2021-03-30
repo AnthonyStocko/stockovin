@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_circle_background_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomGauge">
+        <attr name="gaugePointSize" format="integer" />
+        <attr name="gaugePointStartColor" format="color" />
+        <attr name="gaugePointEndColor" format="color" />
+        <attr name="gaugeStrokeColor" format="color" />
+        <attr name="gaugeStrokeWidth" format="dimension" />
+        <attr name="gaugeStrokeCap" format="string" />
+        <attr name="gaugeStartAngle" format="integer" />
+        <attr name="gaugeSweepAngle" format="integer" />
+        <attr name="gaugeStartValue" format="integer" />
+        <attr name="gaugeEndValue" format="integer" />
+        <attr name="gaugeDividerSize" format="integer" />
+        <attr name="gaugeDividerColor" format="color" />
+        <attr name="gaugeDividerStep" format="integer" />
+        <attr name="gaugeDividerDrawFirst" format="boolean" />
+        <attr name="gaugeDividerDrawLast" format="boolean" />
+    </declare-styleable>
+</resources>

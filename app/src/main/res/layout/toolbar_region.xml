@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="2dip">
+
+        <ImageView
+            android:id="@+id/buttonCreationBotBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="0dp"
+            android:adjustViewBounds="true"
+            android:gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/circ_bot" />
+
+        <ImageView
+            android:id="@+id/iconBot"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="12.3dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="0dp"
+            android:adjustViewBounds="true"
+            android:gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_region" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/titleToolbarProfileConfig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="0dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:fontStyle="italic"
+        android:text=" " />
+
+</LinearLayout>
