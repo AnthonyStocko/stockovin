@@ -1,6 +1,7 @@
 package net.stockovin;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
@@ -17,11 +18,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -195,6 +203,9 @@ public class LoginActivity extends AppCompatActivity {
                         if (user != null) {
                             //storing the user in shared preferences
                             //On stock les préférences de l'utilisateur
+
+                            sendToken(email);
+
                             SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
                             //starting the profile activity
@@ -237,5 +248,55 @@ public class LoginActivity extends AppCompatActivity {
         //executing the async task
         RegisterUser ru = new RegisterUser();
         ru.execute();
+    }
+
+    public void sendToken(String p_email) {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Registering Device...");
+        progressDialog.show();
+
+        MyFirebaseInstanceIDService MyFirebaseInstanceIDService = new MyFirebaseInstanceIDService();
+
+        MyFirebaseInstanceIDService.onTokenRefresh();
+
+        final String token = SharedPrefManager.getInstance(this).getDeviceToken();
+        final String email = p_email;
+
+        if (token == null) {
+            progressDialog.dismiss();
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER_DEVICE,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                       // progressDialog.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("token", token);
+                return params;
+            }
+        };
+        FcmVolley.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

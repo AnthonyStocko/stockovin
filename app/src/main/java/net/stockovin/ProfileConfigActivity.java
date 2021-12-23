@@ -102,8 +102,13 @@ public class ProfileConfigActivity extends AppCompatActivity {
         imgMiFoto.setImageBitmap(selectedImage);
         File file = new File(Environment.getExternalStorageDirectory().toString()+ File.separator +DIRECTORY_PICTURES + "/Stockovin/Profile" + user.getId() +".jpg");
 
-        if (!file.exists())  Glide.with(this).load(R.drawable.ic_user3).apply(new RequestOptions().circleCrop()).into(imgMiFoto);
-        else  Glide.with(this).load(selectedImage).apply(new RequestOptions().circleCrop()).into(imgMiFoto);
+        if (!file.exists()) {
+            Glide.with(this).load(R.drawable.ic_user3).apply(new RequestOptions().circleCrop()).into(imgMiFoto);
+            imgMiFoto.setPadding(30, 30, 30, 30);
+        } else {
+            Glide.with(this).load(selectedImage).apply(new RequestOptions().circleCrop()).into(imgMiFoto);
+            imgMiFoto.setPadding(3, 3, 3, 3);
+        }
 
         findViewById(R.id.imgMiFoto).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,6 +217,7 @@ public class ProfileConfigActivity extends AppCompatActivity {
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 imgMiFoto.setImageBitmap(selectedImage);
+                imgMiFoto.setPadding(3, 3, 3, 3);
                 File Photo_Signa = new File(Environment.getExternalStorageDirectory().toString()+ File.separator +DIRECTORY_PICTURES + "/Stockovin");
 
                 String state = Environment.getExternalStorageState();
@@ -259,6 +265,7 @@ public class ProfileConfigActivity extends AppCompatActivity {
                 }
 
                 Glide.with(this).load(selectedImage).apply(new RequestOptions().circleCrop()).into(imgMiFoto);
+                imgMiFoto.setPadding(3, 3, 3, 3);
 
             } catch (IOException e) {
                 e.printStackTrace();

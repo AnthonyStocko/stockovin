@@ -13,15 +13,16 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-class CategorieViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener, View.OnLongClickListener {
+class CategorieViewHolder extends RecyclerView.ViewHolder  implements  View.OnClickListener, View.OnLongClickListener {
     TextView name;
     TextView tv_nbBottleCategorie;
     LinearLayout l_linearview;
     RecyclerView recyclerCatView;
     CardView cardView;
-    List<LinearLayout> g_linearviewList = new ArrayList<>();
+    List<CategorieViewHolder> g_categorieViewHolderList = new ArrayList<>();
     ImageView imgCat, imgCatPlus, imgCatBack;
     FrameLayout fLayoutCardView;
+    Boolean badgeBorder;
 
     CategorieViewHolder(View view) {
         super(view);
@@ -35,29 +36,33 @@ class CategorieViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
         imgCatPlus = view.findViewById(R.id.addCat);
         imgCatBack = view.findViewById(R.id.imgCatBack);
         fLayoutCardView  = view.findViewById(R.id.fLayoutCardView);
-        g_linearviewList.clear();
+        g_categorieViewHolderList.clear();
+        badgeBorder = false;
+        this.setIsRecyclable(false);
     }
 
     private WeakReference<CategorieAdapter.Listener> callbackWeakRef;
 
-    public void updateWithCategorie (Categorie categorie,  List<LinearLayout>l_linearviewList, RequestManager glide, CategorieAdapter.Listener callback){
+    public void updateWithCategorie (List<CategorieViewHolder>categorieViewHolderList, CategorieAdapter.Listener callback){
 
-        this.l_linearview.setOnClickListener(this);
-        this.fLayoutCardView.setOnClickListener(this);
+        //this.l_linearview.setOnClickListener(this);
+        //this.fLayoutCardView.setOnClickListener(this);
         this.l_linearview.setOnLongClickListener(this);
         this.callbackWeakRef = new WeakReference<CategorieAdapter.Listener>(callback);
-        g_linearviewList = l_linearviewList;
+        g_categorieViewHolderList = categorieViewHolderList;
+
+        for(CategorieViewHolder categorieViewHolder : categorieViewHolderList){
+            if(categorieViewHolder.badgeBorder != true) {
+                categorieViewHolder.l_linearview.setBackgroundResource(R.drawable.border_white);
+            }
+            else{
+                categorieViewHolder.l_linearview.setBackgroundResource(R.drawable.border);
+            }
+        }
     }
 
     @Override
     public void onClick(View view) {
-        for(LinearLayout ll_linearview : g_linearviewList){
-            if(ll_linearview.getVisibility() == View.VISIBLE) {
-                ll_linearview.setBackgroundResource(R.drawable.border_white);
-            }
-        }
-
-        l_linearview.setBackgroundResource(R.drawable.border);
         CategorieAdapter.Listener callback = callbackWeakRef.get();
         callback.onClickDisplayCategorie(getAdapterPosition());
     }
@@ -69,5 +74,10 @@ class CategorieViewHolder extends RecyclerView.ViewHolder  implements View.OnCli
         callback.onLongClickCategorie(view, getAdapterPosition());
         return true;
     }
+
+    private TextView getName() {
+        return(this.name);
+    }
+
 
 }

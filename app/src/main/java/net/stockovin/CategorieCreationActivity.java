@@ -60,7 +60,7 @@ public class CategorieCreationActivity extends AppCompatActivity {
         CategorieName = i.getStringExtra(CategorieActivity.CATEGORIENAME);
         Modify = i.getBooleanExtra(CategorieActivity.MODIFY, false);
         newUserCatActivityBot = i.getBooleanExtra("newUserCatActivityBot", false);
-        g_position = i.getIntExtra("Position", -1);
+        g_position = i.getIntExtra("POSITION", -1);
 
         if(Modify == true){
             chaine = res.getString(R.string.Modify);
@@ -192,7 +192,7 @@ public class CategorieCreationActivity extends AppCompatActivity {
                         finish();
                         CategorieActivity.putExtra("idCategorie", categorie.getId());
                         CategorieActivity.putExtra("newUserReturn", newUserCatActivityBot);
-                        CategorieActivity.putExtra("Position",g_position);
+                        CategorieActivity.putExtra("POSITION",g_position);
                         startActivity(CategorieActivity);
                     } else {
                         Toast.makeText(getApplicationContext(), Res.getString(R.string.ErrorCreationCategorie), Toast.LENGTH_SHORT).show();

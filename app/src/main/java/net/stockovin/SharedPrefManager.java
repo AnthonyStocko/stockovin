@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import java.util.UUID;
+
 //here for this class we are using a singleton pattern
 //Ici pour cette classe nous utilisons une singleton pattern
 
@@ -21,8 +23,13 @@ public class SharedPrefManager {
     private static final String KEY_NBBOTTLEMAX = "keynbbottlemax";
     private static final String KEY_PUBLIC = "keypublic";
 
+    private static final String SHARED_PREF_NAME_FCM = "FCMSharedPref";
+    private static final String TAG_TOKEN = "tagtoken";
+
     private static SharedPrefManager mInstance;
     private static Context mCtx;
+
+    private static String uniqueID = null;
 
     private SharedPrefManager(Context context) {
         mCtx = context;
@@ -128,5 +135,35 @@ public class SharedPrefManager {
         editor.clear();
         editor.apply();
         System.exit(0);
+    }
+
+    //this method will save the device token to shared preferences
+    public boolean saveDeviceToken(String token){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME_FCM, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(TAG_TOKEN, token);
+        editor.apply();
+        return true;
+    }
+
+    //this method will fetch the device token from shared preferences
+    public String getDeviceToken(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME_FCM, Context.MODE_PRIVATE);
+        return  sharedPreferences.getString(TAG_TOKEN, null);
+       // uniqueID = mCtx.getSharedPreferences("_", Context.MODE_PRIVATE).getString("fcm_token", "empty");
+        //return  sharedPreferences.getString(TAG_TOKEN, null);
+
+        /*if (uniqueID == null) {
+            SharedPreferences sharedPrefs = mCtx.getSharedPreferences(
+                    SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            uniqueID = sharedPrefs.getString(SHARED_PREF_NAME, null);
+            if (uniqueID == null) {
+                uniqueID = UUID.randomUUID().toString();
+                SharedPreferences.Editor editor = sharedPrefs.edit();
+                editor.putString(SHARED_PREF_NAME, uniqueID);
+                editor.commit();
+            }
+        }*/
+        //return uniqueID;
     }
 }

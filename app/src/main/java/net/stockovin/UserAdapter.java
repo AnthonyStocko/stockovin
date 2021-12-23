@@ -22,11 +22,13 @@ class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements Filter
     private List<User> userList;
     private List<User> userListFull;
     private List<Integer> friendList;
+    private List<Integer> friendFilteredList = new ArrayList<>();
+    private List<Integer> friendListFull = new ArrayList<>();
     Context ctx;
 
     // 1 - Create interface for callback
     public interface Listener {
-        void onClickAddUserFirend(int id);
+        void onClickAddUserFriend(int id, String email, String name);
         void onClickRefuseUserFirend(int id);
         void onClickAckUserFirend(int id);
         void onClickSuppUserFirend(int id);
@@ -41,6 +43,7 @@ class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements Filter
         this.userList = exampleList;
         this.friendList = friendList;
         userListFull = new ArrayList<>(exampleList);
+        friendListFull = new ArrayList<>(friendList);
         this.glide = glide;
         this.callback = callback;
         this.ctx = ctx;
@@ -71,13 +74,18 @@ class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements Filter
         int currrentfriend = friendList.get(position);
 
         holder.id.setText(String.valueOf(currentUser.getId()));
+        holder.useremail.setText(String.valueOf(currentUser.getEmail()));
 
         troncName = currentUser.getUsername();
         if(troncName.length()>20) troncName = troncName.substring(0,20);
+        troncName = troncName.replace("\n", "");
+        troncName = troncName.replace("\r", "");
         holder.name.setText(troncName);
 
         troncNameCave = currentUser.getcaveName();
         if(troncNameCave.length()>20) troncNameCave = troncNameCave.substring(0,20);
+        troncNameCave = troncNameCave.replace("\n", "");
+        troncNameCave = troncNameCave.replace("\r", "");
         holder.cave.setText(troncNameCave);
 
         Log.d("UserAdapter","currrentfriend "+ currrentfriend);
@@ -164,20 +172,32 @@ class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements Filter
             List<User> filteredList = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
+                userList.clear();
+                friendList.clear();
+                friendFilteredList.clear();
+                filteredList.clear();
+
                 filteredList.addAll(userListFull);
+                friendFilteredList.addAll(friendListFull);
             } else {
 
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 //boolean si déja dans le filtre
                 boolean add = false;
+                int cptFriend = 0;
+                friendFilteredList.clear();
                 for (User item : userListFull) {
                     //filtre nom
                     if (item.getUsername().toLowerCase().contains(filterPattern)) {
+
+                        friendFilteredList.add(friendListFull.get(cptFriend));
                         filteredList.add(item);
+
                         add =true; //Si cet item correspond a la recherche on met true pour les prochain item
                     }
                     add = false; // on remet le boolean à false pour la prochaine itération de la boucle
+                    cptFriend++;
                 }
             }
             FilterResults results = new FilterResults();
@@ -189,7 +209,10 @@ class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements Filter
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             userList.clear();
+            friendList.clear();
             userList.addAll((List) results.values);
+            friendList.addAll(friendFilteredList);
+
             notifyDataSetChanged();
         }
     };

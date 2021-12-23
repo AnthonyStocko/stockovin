@@ -35,4 +35,10 @@ public class URLs {
     public static final String URL_INSERTBOT_SUGGEST = ROOT_URL + "InsertBot_suggest";
     public static final String URL_SELECTBOT_BOT_SUGGEST = ROOT_URL + "SelectBot_Bot_Suggest";
 
+
+    public static final String URL_REGISTER_DEVICE = "http://stockovin.alwaysdata.net/RegisterDevice.php";
+    public static final String URL_SEND_SINGLE_PUSH = "http://stockovin.alwaysdata.net/sendSinglePush.php";
+    public static final String URL_SEND_MULTIPLE_PUSH = "http://stockovin.alwaysdata.net/sendMultiplePush.php";
+    public static final String URL_FETCH_DEVICES = "http://stockovin.alwaysdata.net/GetRegisteredDevices.php";
+
 }

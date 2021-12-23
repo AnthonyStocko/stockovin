@@ -83,6 +83,7 @@ public class BottleCreationActivity extends AppCompatActivity {
     TextView textBottleInsertUpdate;
     ProgressBar progressBar;
 
+    int position = 0;
     int idcategorie = 0;
     String categoriename = null;
     int gIdCategorie = 0;
@@ -140,6 +141,7 @@ public class BottleCreationActivity extends AppCompatActivity {
 
         // On récupère les info des autres activity
         Intent i = getIntent();
+        position = i.getIntExtra(CategorieActivity.POSITION, 0);
         idcategorie = i.getIntExtra(CategorieActivity.CATEGORIE, 0);
         idbottle = i.getIntExtra(CategorieActivity.CATEGORIE_BOTTLE, -1);
         categoriename = i.getStringExtra(CategorieActivity.CATEGORIENAME);
@@ -356,10 +358,10 @@ public class BottleCreationActivity extends AppCompatActivity {
                     alpha.setDuration(500);
                     findViewById(R.id.buttonDeletetBot).startAnimation(alpha);
                     selectbottle.DeleteBottle(selectbottle.getId(), selectbottle.getName(), user.getId(), progressBar, getApplicationContext(),  Res.getString(R.string.ErrorListeBottle));
-                    //DeleteBottle(selectbottle.getId(), selectbottle.getName());
-                    Intent CategorieActivity = new Intent(getApplicationContext(), CategorieActivity.class);
+                    Intent IntCategorieActivity = new Intent(getApplicationContext(), CategorieActivity.class);
+                    IntCategorieActivity.putExtra("POSITION", position);
                     finish();
-                    startActivity(CategorieActivity);
+                    startActivity(IntCategorieActivity);
                 }
             });
 
@@ -374,9 +376,13 @@ public class BottleCreationActivity extends AppCompatActivity {
 
                     String[] arr = new String[userListFriend.size()];
                     Integer[] arr_id = new Integer[userListFriend.size()];
+                    String[] arr_email = new String[userListFriend.size()];
+                    String[] arr_username = new String[userListFriend.size()];
                     for(int i=0 ; i< userListFriend.size();i++){
                         arr[i] = userListFriend.get(i).getUsername();
                         arr_id[i] = userListFriend.get(i).getId();
+                        arr_email[i] = userListFriend.get(i).getEmail();
+                        arr_username[i] = userListFriend.get(i).getUsername();
                     }
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(BottleCreationActivity.this);
@@ -406,7 +412,7 @@ public class BottleCreationActivity extends AppCompatActivity {
                                     for(int i=0 ; i< itemsSelected.size();i++){
                                         Log.d("BottleCreationActivity","itemsSelected " + arr[(int) itemsSelected.get(i)]);
                                         Log.d("BottleCreationActivity","itemsSelected " + arr_id[(int) itemsSelected.get(i)]);
-                                        bottleSuggestInsert(arr_id[(int) itemsSelected.get(i)]);
+                                        bottleSuggestInsert(arr_id[(int) itemsSelected.get(i)], arr_email[(int) itemsSelected.get(i)], arr_username[(int) itemsSelected.get(i)]);
                                     }
                                 }
                             })
@@ -681,9 +687,10 @@ public class BottleCreationActivity extends AppCompatActivity {
                 startActivity(suggestListActivity);
             }
             else {
-                Intent CategorieActivity = new Intent(getApplicationContext(), CategorieActivity.class);
+                Intent IntCategorieActivity = new Intent(getApplicationContext(), CategorieActivity.class);
+                IntCategorieActivity.putExtra("POSITION", position);
                 finish();
-                startActivity(CategorieActivity);
+                startActivity(IntCategorieActivity);
             }
         }
         return super.onKeyDown(keyCode, event);
@@ -770,8 +777,10 @@ public class BottleCreationActivity extends AppCompatActivity {
             startActivity(suggestListActivity);
         }
         else {
+            Intent IntCategorieActivity = new Intent(getApplicationContext(), CategorieActivity.class);
+            IntCategorieActivity.putExtra("POSITION", position);
             finish();
-            startActivity(new Intent(getApplicationContext(), CategorieActivity.class));
+            startActivity(IntCategorieActivity);
         }
 
         return true;
@@ -816,7 +825,6 @@ public class BottleCreationActivity extends AppCompatActivity {
         final String purchaseDate;
         purchaseDate = (datePickerPurchaseDate.getYear() +"-"+ (datePickerPurchaseDate.getMonth()) + "-" +datePickerPurchaseDate.getDayOfMonth());
 
-
         final int year = gYear;
         final String type = GType;
         final String container = gContainer;
@@ -840,8 +848,6 @@ public class BottleCreationActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(domain)) {
             editTextBottledomain.setText(" ");
-            /*editTextBottledomain.setError(Res.getString(R.string.EnterDomainName));
-            editTextBottledomain.requestFocus();*/
             return;
         }
 
@@ -895,8 +901,11 @@ public class BottleCreationActivity extends AppCompatActivity {
                         String message_affiche = Res.getString(R.string.BottleCreate,name);
                         Toast.makeText(getApplicationContext(), message_affiche, Toast.LENGTH_SHORT).show();
 
+                        Intent IntCategorieActivity = new Intent(getApplicationContext(), CategorieActivity.class);
+                        IntCategorieActivity.putExtra("POSITION", position);
                         finish();
-                        startActivity(new Intent(getApplicationContext(), CategorieActivity.class));
+                        startActivity(IntCategorieActivity);
+
 
                     }
                     if (retour_sql[0] != false) {
@@ -937,8 +946,6 @@ public class BottleCreationActivity extends AppCompatActivity {
                 //Création de l'objet request handler
 
                 String replaceName;
-
-
                 RequestHandler requestHandler = new RequestHandler();
 
                 //creating request parameters
@@ -1491,9 +1498,10 @@ public class BottleCreationActivity extends AppCompatActivity {
                             startActivity(BottleList);
                         }
                         else {
-                            Intent CategorieActivity = new Intent(getApplicationContext(), CategorieActivity.class);
+                            Intent IntCategorieActivity = new Intent(getApplicationContext(), CategorieActivity.class);
+                            IntCategorieActivity.putExtra("POSITION", position);
                             finish();
-                            startActivity(CategorieActivity);
+                            startActivity(IntCategorieActivity);
                         }
                     } else {
                         Toast.makeText(getApplicationContext(), Res.getString(R.string.ErrorCreationCategorie), Toast.LENGTH_SHORT).show();
@@ -1778,7 +1786,7 @@ public class BottleCreationActivity extends AppCompatActivity {
         bi.execute();
     }
 
-    private void bottleSuggestInsert(final int id_user_friend) {
+    private void bottleSuggestInsert(final int id_user_friend, final String email_user_friend, final String username_user_friend) {
         /*
         first getting the values
         On récupère le entrées
@@ -1902,6 +1910,11 @@ public class BottleCreationActivity extends AppCompatActivity {
                         }
                     }
                 }
+
+                MyNotificationManager mNotificationManager = new MyNotificationManager(getApplicationContext());
+                String message = user.getUsername() + " " + Res.getString(R.string.suggestFriend);
+                String title = ""+ Res.getString(R.string.newSuggest);
+                mNotificationManager.makePost(getApplicationContext(), email_user_friend, title, message);
             }
 
             @Override

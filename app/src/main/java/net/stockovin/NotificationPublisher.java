@@ -60,8 +60,6 @@ public class NotificationPublisher extends BroadcastReceiver {
         PendingIntent conPendingIntent = PendingIntent.getActivity(context,0,notificationIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(conPendingIntent);
 
-       /* Notification notification = intent.getParcelableExtra(NOTIFICATION);*/
-
         notificationManager.notify(id, builder.build());
 
     }

@@ -576,12 +576,12 @@ public class UserFriendListActivity extends AppCompatActivity implements UserAda
     }
 
     @Override
-    public void onClickAddUserFirend(int id) {
+    public void onClickAddUserFriend(int id, String email, String name) {
         final User user = SharedPrefManager.getInstance(this).getUser();
         final Resources Res = getResources();
         final int l_id = id;
 
-        class onClickAddUserFirend extends AsyncTask<Void, Void, String> {
+        class onClickAddUserFriend extends AsyncTask<Void, Void, String> {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -608,6 +608,10 @@ public class UserFriendListActivity extends AppCompatActivity implements UserAda
                 friendList.clear();
                 afficheUser();
 
+                MyNotificationManager mNotificationManager = new MyNotificationManager(getApplicationContext());
+                String message = user.getUsername() + " " + Res.getString(R.string.askFriend);
+                String title = ""+ Res.getString(R.string.newFriend);
+                mNotificationManager.makePost(getApplicationContext(), email, title, message);
             }
 
             @Override
@@ -628,7 +632,7 @@ public class UserFriendListActivity extends AppCompatActivity implements UserAda
             }
         }
 
-        onClickAddUserFirend alc = new onClickAddUserFirend();
+        onClickAddUserFriend alc = new onClickAddUserFriend();
         alc.execute();
         //AfficheBottle (clauseWhere, clauseWhereId);
 

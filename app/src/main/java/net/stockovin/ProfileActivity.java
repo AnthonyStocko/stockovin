@@ -7,6 +7,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Context;
@@ -39,13 +40,23 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.Headers;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.ads.mediationtestsuite.MediationTestSuite;
 import com.google.android.gms.ads.AdListener;
@@ -58,6 +69,8 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,10 +82,14 @@ import org.opencv.features2d.DescriptorExtractor;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import tourguide.tourguide.Overlay;
 import tourguide.tourguide.ToolTip;
 import tourguide.tourguide.TourGuide;
@@ -80,6 +97,20 @@ import tourguide.tourguide.TourGuide;
 import static android.content.ContentValues.TAG;
 import static android.os.Environment.DIRECTORY_PICTURES;
 import static java.lang.Thread.sleep;
+
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ProfileActivity extends Activity {
@@ -107,6 +138,8 @@ public class ProfileActivity extends Activity {
     int g_pourcentAbs= 0;
 
     private CustomGauge gauge1, gauge2;
+
+    private final OkHttpClient client = new OkHttpClient();
 
 
     Uri imageUri;
@@ -199,6 +232,12 @@ public class ProfileActivity extends Activity {
             requestPermission();
         }
 
+        /*String token = SharedPrefManager.getInstance(this).getDeviceToken();
+
+        /*if (token == null) {
+            MyFirebaseInstanceIDService MyFirebaseInstanceIDService = new MyFirebaseInstanceIDService();
+            MyFirebaseInstanceIDService.onTokenRefresh();
+        }*/
 
         if (checkPermission()) {
             Bitmap selectedImage = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().toString() + File.separator + DIRECTORY_PICTURES + "/Stockovin/Profile" + user.getId() + ".jpg");
@@ -206,10 +245,14 @@ public class ProfileActivity extends Activity {
 
             File file = new File(Environment.getExternalStorageDirectory().toString() + File.separator + DIRECTORY_PICTURES + "/Stockovin/Profile" + user.getId() + ".jpg");
 
-            if (!file.exists())
+            if (!file.exists()) {
                 Glide.with(this).load(R.drawable.ic_user3).apply(new RequestOptions().circleCrop()).into(imgMiFoto);
-            else
+                imgMiFoto.setPadding(30, 30, 30, 30);
+            }
+            else {
                 Glide.with(this).load(selectedImage).apply(new RequestOptions().circleCrop()).into(imgMiFoto);
+                imgMiFoto.setPadding(3, 3, 3, 3);
+            }
         }
         else{
             requestPermission();
@@ -218,6 +261,8 @@ public class ProfileActivity extends Activity {
         this.runnableAnim.run();
         this.handlerAnimationCIMG.removeCallbacks(runnableAnim);
         recupNbBouteille(this.runnableGauge);
+
+        sendToken(user.getEmail());
 
         if (newUser == true) {
 
@@ -247,10 +292,9 @@ public class ProfileActivity extends Activity {
                 if (newUser == true){
                     mTourGuideHandler.cleanUp();
                     displayToolTipDegut();
+
                 }
                 else {
-                      // .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-
                     AlphaAnimation alpha = new AlphaAnimation(0f, 1f);
                     alpha.setDuration(500);
                     findViewById(R.id.linlayCave).startAnimation(alpha);
@@ -990,4 +1034,56 @@ public class ProfileActivity extends Activity {
             ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
         }
     }
+
+    public void sendToken(String p_email) {
+        //ProgressDialog progressDialog = new ProgressDialog(this);
+        //progressDialog.setMessage("Registering Device...");
+        //progressDialog.show();
+
+        MyFirebaseInstanceIDService MyFirebaseInstanceIDService = new MyFirebaseInstanceIDService();
+
+        MyFirebaseInstanceIDService.onTokenRefresh();
+
+        final String token = SharedPrefManager.getInstance(this).getDeviceToken();
+        final String email = p_email;
+
+        if (token == null) {
+            //progressDialog.dismiss();
+            //Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER_DEVICE,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // progressDialog.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            //Toast.makeText(ProfileActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //progressDialog.dismiss();
+                        //Toast.makeText(ProfileActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("token", token);
+                return params;
+            }
+        };
+        FcmVolley.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+
 }

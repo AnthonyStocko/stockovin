@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "280579530693",
+    "project_id": "stockovin-8b343",
+    "storage_bucket": "stockovin-8b343.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280579530693:android:c5c1b069af24aa3bad75ac",
+        "android_client_info": {
+          "package_name": "net.stockovin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280579530693-517ea5425i0dj8h1k8ljrj94pemp29v6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ4c9dAd1d8J4tIf55bm9DUUd2_vDaD7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280579530693-517ea5425i0dj8h1k8ljrj94pemp29v6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

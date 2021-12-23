@@ -15,9 +15,7 @@ import com.bumptech.glide.RequestManager;
 import java.lang.ref.WeakReference;
 
 class UserViewHolder extends RecyclerView.ViewHolder   implements View.OnClickListener, View.OnLongClickListener  {
-    TextView id;
-    TextView name;
-    TextView cave;
+    TextView id, name, cave, useremail;
     ImageView   imagButtonAddBack,  imgUserRefuseBack, imgUserAckBack, imgUserSuppBack, imgUserRetBack;
     TextView imgUserAck, imagButtonAdd, imgUserRefuse, imgUserSupp, imgUserRet;
     LinearLayout bottleViewLigne;
@@ -29,6 +27,7 @@ class UserViewHolder extends RecyclerView.ViewHolder   implements View.OnClickLi
         id = view.findViewById(R.id.userid);
         name = view.findViewById(R.id.userName);
         cave = view.findViewById(R.id.userCave);
+        useremail = view.findViewById(R.id.userEmail);
 
         imagButtonAddBack = itemView.findViewById(R.id.imgBotAddBack);
         imagButtonAdd = itemView.findViewById(R.id.imgBotAdd);
@@ -73,7 +72,7 @@ class UserViewHolder extends RecyclerView.ViewHolder   implements View.OnClickLi
                 alpha.setDuration(500);
                 view.findViewById(R.id.imgBotAddBack).startAnimation(alpha);
 
-                callback.onClickAddUserFirend(Integer.valueOf(id.getText().toString()));
+                callback.onClickAddUserFriend(Integer.valueOf(id.getText().toString()), useremail.getText().toString(), name.getText().toString());
 
             }
 

@@ -64,6 +64,7 @@ import static android.os.Environment.DIRECTORY_PICTURES;
 
 public class CategorieActivity extends AppCompatActivity implements BottleAdapter.Listener, CategorieAdapter.Listener, FilterAdapter.Listener{
 
+    public final static String POSITION = "com.example.intent.example.POSITION";
     public final static String CATEGORIE = "com.example.intent.example.CATEGORIE";
     public final static String CATEGORIENAME = "com.example.intent.example.CATEGORIENAME";
     public final static String CATEGORIEARRAY = "com.example.intent.example.CATEGORIEARRAY";
@@ -123,7 +124,7 @@ public class CategorieActivity extends AppCompatActivity implements BottleAdapte
 
         newUserCatActivity = getIntent().getBooleanExtra("newUserCatActivity", false);
         newUserCatActivityBotReturn = getIntent().getBooleanExtra("newUserReturn", false);
-        g_position_cat = getIntent().getIntExtra("Position", -1);
+        g_position_cat = getIntent().getIntExtra("POSITION", -1);
         newUserCatActivityBot = newUserCatActivity;
 
         progressBar = this.findViewById(R.id.progressBarMenu);
@@ -187,6 +188,7 @@ public class CategorieActivity extends AppCompatActivity implements BottleAdapte
                 Intent bottleCreationActivity = new Intent(getApplicationContext(), BottleCreationActivity.class);
                 finish();
                 bottleCreationActivity.putParcelableArrayListExtra("CategorieListe", (ArrayList<? extends Parcelable>) catList);
+                bottleCreationActivity.putExtra(POSITION, g_position_cat);
                 bottleCreationActivity.putExtra(CATEGORIE, Glo_idcategorie);
                 bottleCreationActivity.putExtra(CATEGORIENAME, Glo_categoriename);
                 startActivity(bottleCreationActivity);
@@ -407,7 +409,6 @@ public class CategorieActivity extends AppCompatActivity implements BottleAdapte
                         g_nbBotCatList.add (0);
 
                         //chargeCategorie();
-
                         if(g_position_cat != -1){
                             findViewById(R.id.buttonCreationBot).setVisibility(View.VISIBLE);
                         }
@@ -694,7 +695,7 @@ public class CategorieActivity extends AppCompatActivity implements BottleAdapte
         registerForContextMenu(recyclerCatView);
         if(g_position_cat != -1 && g_position_cat != -2)
         {
-            recyclerCatView.scrollToPosition(0);
+            recyclerCatView.scrollToPosition(g_position_cat);
             findViewById(R.id.buttonCreationBot).setVisibility(View.VISIBLE);
         }
 
@@ -729,8 +730,8 @@ public class CategorieActivity extends AppCompatActivity implements BottleAdapte
                     case R.id.deleteItem:
                         // On récupère la position de l'item concerné
                         DeleteBottle(botList.get(position).getId(), botList.get(position).getName());
-                        botList.remove(botList.get(position));
                         AfficheBottle(botList.get(position).getIdcategorie());
+                        botList.remove(botList.get(position));
                         break;
 
                     case R.id.modifyItem:
@@ -1457,7 +1458,6 @@ public class CategorieActivity extends AppCompatActivity implements BottleAdapte
             }
         });
         popup.show();
-        //v.setBackgroundResource(R.drawable.border);
     }
 
     @Override
@@ -1485,7 +1485,7 @@ public class CategorieActivity extends AppCompatActivity implements BottleAdapte
             finish();
             categorieCreationActivity.putExtra(MODIFY, false);
             categorieCreationActivity.putExtra("newUserCatActivityBot",newUserCatActivityBot);
-            categorieCreationActivity.putExtra("Position",catList.get(position).getId());
+            categorieCreationActivity.putExtra("POSITION",catList.get(position).getId());
             startActivity(categorieCreationActivity);
         }
 

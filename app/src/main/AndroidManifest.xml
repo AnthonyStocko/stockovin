@@ -15,6 +15,8 @@
     <application
 
 
+
+
         android:hardwareAccelerated="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -44,6 +46,17 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8989015951151317~3908098453"/>
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+             See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/icon_bottle" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
 
         <activity android:name=".BottleActivity"></activity>
         <activity
@@ -54,8 +67,8 @@
         <activity android:name=".ProfileActivity"
             android:theme="@style/AppTheme1"
             android:hardwareAccelerated="true">
-
         </activity>
+
         <activity
             android:name=".ProfileConfigActivity"
             android:theme="@style/AppTheme1"
@@ -67,6 +80,7 @@
             android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".ProfileActivity">
         </activity>
+
         <activity android:name=".CategorieCreationActivity"
             android:theme="@style/AppTheme1"
             android:parentActivityName=".CategorieActivity"></activity>
@@ -86,12 +100,26 @@
             android:parentActivityName=".ProfileActivity">
         </activity>
         <activity android:name=".LoginActivity" />
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service    android:name=".MyFirebaseMessagingService"
+                    android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+
             </intent-filter>
         </activity>
         <receiver android:name=".NotificationPublisher"

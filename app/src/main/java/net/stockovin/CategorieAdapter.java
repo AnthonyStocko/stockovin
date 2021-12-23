@@ -14,15 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.RequestManager;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 class CategorieAdapter extends RecyclerView.Adapter<CategorieViewHolder> {
     private List<Categorie> CategoriesList;
     private List<Integer> g_nbBotCatList;
-    List<LinearLayout> l_linearviewList = new ArrayList<>();
     int position;
-    boolean premierPassage = true;
+    int row_index=0;
 
     private CategorieAdapter.Listener callback;
     private RequestManager glide;
@@ -38,6 +38,7 @@ class CategorieAdapter extends RecyclerView.Adapter<CategorieViewHolder> {
         this.glide = glide;
         this.callback = callback;
         this.position = p_position;
+
     }
 
     @NonNull
@@ -48,6 +49,7 @@ class CategorieAdapter extends RecyclerView.Adapter<CategorieViewHolder> {
 
         ImageView imag = itemView.findViewById(R.id.imagesCat);
         imag.setImageResource(R.drawable.icon_region);
+        itemView.setBackgroundResource(R.drawable.border_white);
 
         return new CategorieViewHolder(itemView);
     }
@@ -57,7 +59,6 @@ class CategorieAdapter extends RecyclerView.Adapter<CategorieViewHolder> {
         String troncName;
         Categorie cat = CategoriesList.get(position);
         Integer l_nbBotCat = g_nbBotCatList.get(position);
-
 
         troncName = cat.getName();
         if(troncName.length()>13) troncName = troncName.substring(0,13);
@@ -79,23 +80,32 @@ class CategorieAdapter extends RecyclerView.Adapter<CategorieViewHolder> {
             holder.tv_nbBottleCategorie.setVisibility(View.VISIBLE);
             holder.imgCat.setVisibility(View.VISIBLE);
             holder.name.setVisibility(View.VISIBLE);
-            /*if((this.position == -1 && holder.name.getText().equals("Tout")) || (this.position == -2 && CategoriesList.size()-2 == position)) holder.l_linearview.setBackgroundResource(R.drawable.border);
-            else holder.l_linearview.setBackgroundResource(R.drawable.border_white);*/
-            if(premierPassage == true) {
-                premierPassage = false;
-                if(holder.name.getText().equals("Tout")) holder.l_linearview.setBackgroundResource(R.drawable.border);
-            }
         }
 
-        l_linearviewList.add(holder.l_linearview);
-        holder.updateWithCategorie(CategoriesList.get(position), l_linearviewList, this.glide, this.callback);
-    }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View view) {
+                row_index=position;
+                notifyDataSetChanged();
+                callback.onClickDisplayCategorie(position);
+            }
+        });
+
+        if(row_index==position){
+            holder.itemView.setBackgroundResource(R.drawable.border);
+        }
+        else
+        {
+            holder.itemView.setBackgroundResource(R.drawable.border_white);
+        }
+    }
 
     @Override
     public int getItemCount() {
         return CategoriesList.size();
     }
+
 
 
 }

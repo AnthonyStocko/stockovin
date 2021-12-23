@@ -117,6 +117,8 @@
     <string name="Cancel">Annuler</string>
     <string name="Supp">Supprimer</string>
     <string name="ButtonBotSuggest">Suggérer</string>
+    <string name="suggestFriend"> vous a envoyé une suggestion.</string>
+    <string name="newSuggest">Nouvelle suggestion</string>
 
 
     //BottleList
@@ -131,6 +133,8 @@
     <string name="add">Ajouter</string>
     <string name="refuse">Refuser</string>
     <string name="Ret">Retirer</string>
+    <string name="askFriend"> vous a envoyé une demande.</string>
+    <string name="newFriend">Nouvelle demande d"'"un copain</string>
 
     //Mail
     <string name="objectMail">"Stockovin : Changement de mot de passe"</string>
