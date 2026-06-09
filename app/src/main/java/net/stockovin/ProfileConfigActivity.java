@@ -129,6 +129,16 @@ public class ProfileConfigActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.buttonDeleteProfil).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlphaAnimation alpha = new AlphaAnimation(0f, 1f);
+                alpha.setDuration(500);
+                findViewById(R.id.buttonDeleteProfil).startAnimation(alpha);
+                deleteUser();
+            }
+        });
+
         findViewById(R.id.ButtonLogout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -450,5 +460,78 @@ public class ProfileConfigActivity extends AppCompatActivity {
         SharedPrefManager.getInstance(this).setName(name);
         SharedPrefManager.getInstance(this).setNbBottleMax(nbBottleMax);
         SharedPrefManager.getInstance(this).setPublic(userPublic);
+    }
+
+    void deleteUser()
+    {
+        Resources Res = getResources();
+
+        EditTextUserEmail = (EditText) findViewById(R.id.EditTextViewEmail);
+        EditTextViewPassword = (EditText) findViewById(R.id.EditTextViewPassword);
+
+        final String password  = EditTextViewPassword.getText().toString();
+
+
+        if (!TextUtils.isEmpty(password)) {
+            EditTextViewConfirmPassword.setError(Res.getString(R.string.EnterPassword));
+            EditTextViewConfirmPassword.requestFocus();
+            return;
+        }
+
+        if (!TextUtils.isEmpty(password)) {
+
+            if (password.length()<=7) {
+                EditTextViewPassword.setError(Res.getString(R.string.lengthPassword));
+                EditTextViewPassword.requestFocus();
+                return;
+            }
+        }
+        class UserDelete extends AsyncTask<Void, Void, String> {
+
+            ProgressBar progressBar;
+            Resources Res = getResources();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressBar = findViewById(R.id.progressBarCatInsert);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+
+                try {
+                    JSONObject obj = new JSONObject(s);
+
+                    //if no error in response
+                    if (!obj.getBoolean("error")) {
+
+                        finish();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(), Res.getString(R.string.ErrorModifUser), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                //creating request handler object
+                RequestHandler requestHandler = new RequestHandler();
+
+                    //creating request parameters
+                    HashMap<String, String> params = new HashMap<>();
+                    params.put("id", Integer.toString(user.getId()));
+
+                    //returing the response
+                    return requestHandler.sendPostRequest(URLs.URL_DELETEUSER, params);
+            }
+        }
+
+        UserDelete bi = new UserDelete();
+        bi.execute();
     }
 }

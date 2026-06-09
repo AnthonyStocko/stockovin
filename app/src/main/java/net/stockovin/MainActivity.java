@@ -1,10 +1,12 @@
+
 package net.stockovin;
 
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -131,22 +135,27 @@ public class MainActivity extends AppCompatActivity {
         //if everything is fine
         //Si tout est OK
 
-        class UserLogin extends AsyncTask<Void, Void, String> {
+        //Remplacement de l'AsyncTask (déprécié depuis API 30)
+        //par un ExecutorService + Handler sur le main looper
+        final ProgressBar progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
-            ProgressBar progressBar;
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
 
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                progressBar = findViewById(R.id.progressBar);
-                progressBar.setVisibility(View.VISIBLE);
-            }
+        executor.execute(() -> {
+            //--- Travail en arrière-plan (ex-doInBackground) ---
+            RequestHandler requestHandler = new RequestHandler();
 
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
+            HashMap<String, String> params = new HashMap<>();
+            params.put("username", username);
+            params.put("password", password);
+
+            final String s = requestHandler.sendPostRequest(URLs.URL_LOGIN, params);
+
+            //--- Retour sur le thread UI (ex-onPostExecute) ---
+            handler.post(() -> {
                 progressBar.setVisibility(View.GONE);
-
 
                 try {
                     //converting response to json object
@@ -198,23 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }
-
-            @Override
-            protected String doInBackground(Void... voids) {
-                //creating request handler object
-                RequestHandler requestHandler = new RequestHandler();
-
-                //creating request parameters
-                HashMap<String, String> params = new HashMap<>();
-                params.put("username", username);
-                params.put("password", password);
-
-                //returing the response
-                return requestHandler.sendPostRequest(URLs.URL_LOGIN, params);
-            }
-        }
-        UserLogin ul = new UserLogin();
-        ul.execute();
+            });
+        });
     }
 }

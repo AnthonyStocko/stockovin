@@ -251,52 +251,69 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void sendToken(String p_email) {
-        ProgressDialog progressDialog = new ProgressDialog(this);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registering Device...");
         progressDialog.show();
 
-        MyFirebaseInstanceIDService MyFirebaseInstanceIDService = new MyFirebaseInstanceIDService();
-
-        MyFirebaseInstanceIDService.onTokenRefresh();
-
-        final String token = SharedPrefManager.getInstance(this).getDeviceToken();
         final String email = p_email;
 
-        if (token == null) {
-            progressDialog.dismiss();
-            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER_DEVICE,
-                new Response.Listener<String>() {
+        // CORRECTION : Récupération moderne et asynchrone du Token Firebase
+        com.google.firebase.messaging.FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new com.google.android.gms.tasks.OnCompleteListener<String>() {
                     @Override
-                    public void onResponse(String response) {
-                       // progressDialog.dismiss();
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                    public void onComplete(@androidx.annotation.NonNull com.google.android.gms.tasks.Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            progressDialog.dismiss();
+                            Log.w("LoginActivity", "Fetching FCM registration token failed", task.getException());
+                            Toast.makeText(LoginActivity.this, "Token generation failed", Toast.LENGTH_LONG).show();
+                            return;
                         }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }) {
 
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("email", email);
-                params.put("token", token);
-                return params;
-            }
-        };
-        FcmVolley.getInstance(this).addToRequestQueue(stringRequest);
+                        // Récupération du nouveau token généré
+                        final String token = task.getResult();
+
+                        if (token == null || token.isEmpty()) {
+                            progressDialog.dismiss();
+                            Toast.makeText(LoginActivity.this, "Token is empty", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        // Sauvegarde locale optionnelle dans tes préférences si ton application en a besoin ailleurs
+                        // SharedPrefManager.getInstance(LoginActivity.this).saveDeviceToken(token);
+
+                        // Envoi du token à ton serveur via Volley
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER_DEVICE,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        progressDialog.dismiss();
+                                        try {
+                                            JSONObject obj = new JSONObject(response);
+                                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }) {
+
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String, String> params = new HashMap<>();
+                                params.put("email", email);
+                                params.put("token", token);
+                                return params;
+                            }
+                        };
+
+                        FcmVolley.getInstance(LoginActivity.this).addToRequestQueue(stringRequest);
+                    }
+                });
     }
 }

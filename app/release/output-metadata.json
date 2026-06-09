@@ -1,42 +1,19 @@
 {
-  "version": 2,
+  "version": 3,
   "artifactType": {
     "type": "APK",
     "kind": "Directory"
   },
   "applicationId": "net.stockovin",
-  "variantName": "processReleaseResources",
+  "variantName": "release",
   "elements": [
     {
       "type": "UNIVERSAL",
       "filters": [],
-      "versionCode": 39,
-      "versionName": "3.9",
+      "attributes": [],
+      "versionCode": 44,
+      "versionName": "4.4",
       "outputFile": "app-universal-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "ABI",
-          "value": "x86"
-        }
-      ],
-      "versionCode": 80000039,
-      "versionName": "3.9",
-      "outputFile": "app-x86-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "ABI",
-          "value": "x86_64"
-        }
-      ],
-      "versionCode": 90000039,
-      "versionName": "3.9",
-      "outputFile": "app-x86_64-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -46,33 +23,10 @@
           "value": "mips64"
         }
       ],
-      "versionCode": 60000039,
-      "versionName": "3.9",
+      "attributes": [],
+      "versionCode": 60000044,
+      "versionName": "4.4",
       "outputFile": "app-mips64-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "ABI",
-          "value": "arm64-v8a"
-        }
-      ],
-      "versionCode": 30000039,
-      "versionName": "3.9",
-      "outputFile": "app-arm64-v8a-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "ABI",
-          "value": "armeabi"
-        }
-      ],
-      "versionCode": 10000039,
-      "versionName": "3.9",
-      "outputFile": "app-armeabi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -82,8 +36,9 @@
           "value": "armeabi-v7a"
         }
       ],
-      "versionCode": 20000039,
-      "versionName": "3.9",
+      "attributes": [],
+      "versionCode": 20000044,
+      "versionName": "4.4",
       "outputFile": "app-armeabi-v7a-release.apk"
     },
     {
@@ -94,9 +49,63 @@
           "value": "mips"
         }
       ],
-      "versionCode": 50000039,
-      "versionName": "3.9",
+      "attributes": [],
+      "versionCode": 50000044,
+      "versionName": "4.4",
       "outputFile": "app-mips-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "armeabi"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 10000044,
+      "versionName": "4.4",
+      "outputFile": "app-armeabi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "x86_64"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 90000044,
+      "versionName": "4.4",
+      "outputFile": "app-x86_64-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "x86"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 80000044,
+      "versionName": "4.4",
+      "outputFile": "app-x86-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "arm64-v8a"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 30000044,
+      "versionName": "4.4",
+      "outputFile": "app-arm64-v8a-release.apk"
     }
-  ]
+  ],
+  "elementType": "File"
 }

@@ -6,6 +6,7 @@
     <string name="modify_item">Modifier</string>
     <string name="creation">Création</string>
     <string name="Modify">Modification</string>
+    <string name="Delete">Suppression</string>
 
     //MainActivity
     <string name="EnterName">Entrer votre identifiant</string>
@@ -20,7 +21,7 @@
     //ProfileActivity
     <string name="ButtonCave">La cave</string>
     <string name="ButtonFriend">Les copains</string>
-    <string name="ButtonLogout">Logout</string>
+    <string name="ButtonLogout">Déconnexion</string>
     <string name="Bottle">Bouteilles</string>
     <string name="Categorie">Régions</string>
     <string name="PourcentInfo">Informations</string>

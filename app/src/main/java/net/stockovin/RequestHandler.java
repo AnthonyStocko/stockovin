@@ -1,8 +1,11 @@
 package net.stockovin;
 
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -13,30 +16,16 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.net.ssl.HttpsURLConnection;
-
-/**
- * Created by Belal on 9/5/2017.
- */
-
 public class RequestHandler {
 
+    private static final String TAG = "RequestHandler";
 
-    //this method will send a post request to the specified url
-    //Cette méthode envera un post request à un url spécifique
-    //in this app we are using only post request
-    //dans cette application nous utiliserons seulement le post request
-    //in the hashmap we have the data to be sent to the server in keyvalue pairs
-    //dans le hasmap nous avons des données pour etre envoyé au serveur dans keyvalues pairs
     public String sendPostRequest(String requestURL, HashMap<String, String> postDataParams) {
-        URL url;
-
         StringBuilder sb = new StringBuilder();
+        HttpURLConnection conn = null;
         try {
-            url = new URL(requestURL);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            //conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
-            //conn.setRequestProperty("Cookie", "__test=3c339cd2ff0a65087e49f60608c6bf0fa; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
+            URL url = new URL(requestURL);
+            conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(15000);
             conn.setConnectTimeout(15000);
             conn.setRequestMethod("POST");
@@ -44,37 +33,44 @@ public class RequestHandler {
             conn.setDoOutput(true);
 
             OutputStream os = conn.getOutputStream();
-
-            BufferedWriter writer = new BufferedWriter(
-                    new OutputStreamWriter(os, "UTF-8"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
             writer.write(getPostDataString(postDataParams));
-
             writer.flush();
             writer.close();
             os.close();
+
             int responseCode = conn.getResponseCode();
+            Log.d(TAG, "URL=" + requestURL + " responseCode=" + responseCode);
 
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
+            // On lit le bon flux selon le code HTTP
+            InputStream is = (responseCode >= 200 && responseCode < 400)
+                    ? conn.getInputStream()
+                    : conn.getErrorStream();
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                sb = new StringBuilder();
-                String response;
-
-
-                while ((response = br.readLine()) != null) {
-                    sb.append(response);
+            if (is != null) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
                 }
+                br.close();
+            }
 
+            if (responseCode != HttpURLConnection.HTTP_OK) {
+                Log.e(TAG, "Réponse HTTP non-OK (" + responseCode + ") : " + sb.toString());
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            // On NE masque plus l'erreur : elle apparaît clairement dans Logcat
+            Log.e(TAG, "Erreur réseau sur " + requestURL, e);
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
         }
         return sb.toString();
     }
 
-
-    //this method is converting keyvalue pairs data into a query string as needed to send to the server
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;

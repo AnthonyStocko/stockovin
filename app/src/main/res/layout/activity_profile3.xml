@@ -366,6 +366,35 @@
                     android:paddingBottom="50dp"
                     android:text="@string/Modify" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linlay4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp">
+
+                <ImageView
+                    android:id="@+id/buttonDeleteProfil2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_poubelle" />
+
+                <TextView
+                    android:id="@+id/buttonDeleteProfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="50dp"
+                    android:text="@string/Delete" />
+            </LinearLayout>
         </LinearLayout>
         </ScrollView>
     </RelativeLayout>

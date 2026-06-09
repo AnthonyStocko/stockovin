@@ -26,6 +26,7 @@ public class URLs {
     public static final String URL_RESETPASSWORD = ROOT_URL + "ResetPassword";
     public static final String URL_UPDATEUSER_PW = ROOT_URL + "UpdateUserPassword";
     public static final String URL_SELECTUSER = ROOT_URL + "Selectuser";
+    public static final String URL_DELETEUSER = ROOT_URL + "DeleteUser";
     public static final String URL_INSERT_USER_FRIEND = ROOT_URL + "InsertUserFriend";
     public static final String URL_DELETE_USER_FRIEND = ROOT_URL + "DeleteUserFriend";
     public static final String URL_ACK_USER_FRIEND = ROOT_URL + "AckUserFriend";

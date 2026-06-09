@@ -201,10 +201,16 @@ public class CategorieActivity extends AppCompatActivity implements BottleAdapte
             ToolTip toolTipCave = new ToolTip().setTitle("Les bouteilles").setDescription("Vous pouvez, maintenant, enregistrer votre première bouteille");
             toolTipCave.setGravity(Gravity.TOP);
 
-            mTourGuideHandler = TourGuide.init(this).with(TourGuide.Technique.CLICK)
+            // 1. On initialise l'instance de TourGuide principale
+            mTourGuideHandler = TourGuide.init(this);
+
+            // 2. On configure la technique, le tooltip et l'overlay séparément
+            mTourGuideHandler.with(TourGuide.Technique.CLICK)
                     .setToolTip(toolTipCave)
-                    .setOverlay(new Overlay())
-                    .playOn(buttonCreationBot);
+                    .setOverlay(new Overlay()); // Cette ligne renvoie void mais modifie mTourGuideHandler en interne
+
+            // 3. On lance enfin l'affichage sur la vue voulue
+            mTourGuideHandler.playOn(buttonCreationBot);
 
         }
 
@@ -1559,10 +1565,16 @@ public class CategorieActivity extends AppCompatActivity implements BottleAdapte
         ToolTip toolTipCave = new ToolTip().setTitle("Les Régions").setDescription("Créez votre première région");
                                 toolTipCave.setGravity(Gravity.BOTTOM);
 
-        mTourGuideHandler = TourGuide.init(this).with(TourGuide.Technique.CLICK)
+        // 1. On initialise l'instance de TourGuide principale
+        mTourGuideHandler = TourGuide.init(this);
+
+        // 2. On configure la technique, le tooltip et l'overlay séparément
+        mTourGuideHandler.with(TourGuide.Technique.CLICK)
                 .setToolTip(toolTipCave)
-                .setOverlay(new Overlay())
-                .playOn(recyclerViewLayCat);
+                .setOverlay(new Overlay()); // Cette ligne renvoie void mais modifie mTourGuideHandler en interne
+
+        // 3. On lance enfin l'affichage sur la vue voulue
+        mTourGuideHandler.playOn(recyclerViewLayCat);
 
     }
 

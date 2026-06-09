@@ -3,10 +3,7 @@
 3    package="org.opencv"
 4    android:versionCode="3430"
 5    android:versionName="3.4.3" > <!-- <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="21" /> -->
-6    <uses-sdk
-7        android:minSdkVersion="8"
-7-->C:\Users\amourier\AndroidStudioProjects\Stockovin\openCVLibrary343\src\main\AndroidManifest.xml
-8        android:targetSdkVersion="29" />
-8-->C:\Users\amourier\AndroidStudioProjects\Stockovin\openCVLibrary343\src\main\AndroidManifest.xml
-9
-10</manifest>
+6    <uses-sdk android:minSdkVersion="25" />
+6-->C:\Users\amourier\AndroidStudioProjects\Stockovin\openCVLibrary343\src\main\AndroidManifest.xml
+7
+8</manifest>
